@@ -1,0 +1,7 @@
+C:\Users\david\Documents\Cloud Computing DevOps\ThAmCo-WebApp\WebApp\bin\publish\WebApp.exe
+C:\Users\david\Documents\Cloud Computing DevOps\ThAmCo-WebApp\WebApp\bin\publish\appsettings.Development.json
+C:\Users\david\Documents\Cloud Computing DevOps\ThAmCo-WebApp\WebApp\bin\publish\appsettings.json
+C:\Users\david\Documents\Cloud Computing DevOps\ThAmCo-WebApp\WebApp\bin\publish\WebApp.dll
+C:\Users\david\Documents\Cloud Computing DevOps\ThAmCo-WebApp\WebApp\bin\publish\WebApp.deps.json
+C:\Users\david\Documents\Cloud Computing DevOps\ThAmCo-WebApp\WebApp\bin\publish\WebApp.runtimeconfig.json
+C:\Users\david\Documents\Cloud Computing DevOps\ThAmCo-WebApp\WebApp\bin\publish\WebApp.pdb
