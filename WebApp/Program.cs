@@ -14,10 +14,9 @@ builder.Services.AddHttpClient("ProductsClient", client =>
 {
     var baseUrl = builder.Configuration["ProductsApi:BaseUrl"];
     client.BaseAddress = new Uri(baseUrl);
-    client.Timeout = TimeSpan.FromSeconds(5);
+    client.Timeout = TimeSpan.FromSeconds(20);
     client.DefaultRequestHeaders.Add("Accept", "application/json");
 });
-
 
 if (builder.Environment.IsDevelopment())
 {
@@ -29,7 +28,6 @@ else
     builder.Services.AddScoped<IProductsService, ProductsService>();
 }
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
