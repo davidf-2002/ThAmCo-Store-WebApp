@@ -10,17 +10,19 @@ builder.Services.AddAuth0WebAppAuthentication(options =>
 });
 
 // Configure HttpClient for IProductsService with centralized settings
-builder.Services.AddHttpClient<IProductsService, ProductsService>(client =>
+builder.Services.AddHttpClient("ProductsClient", client =>
 {
     var baseUrl = builder.Configuration["ProductsApi:BaseUrl"];
-    client.BaseAddress = new Uri(baseUrl ?? throw new InvalidOperationException("Base URL for Products API is not configured"));
+    client.BaseAddress = new Uri(baseUrl);
     client.Timeout = TimeSpan.FromSeconds(5);
     client.DefaultRequestHeaders.Add("Accept", "application/json");
 });
 
+
 if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddSingleton<IProductsService, ProductsServiceFake>(); 
+    //builder.Services.AddScoped<IProductsService, ProductsService>();
 }
 else 
 {

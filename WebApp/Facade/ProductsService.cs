@@ -1,12 +1,10 @@
 public class ProductsService : IProductsService
 {
     private readonly HttpClient _client;
-    private readonly IConfiguration _config;
 
-    public ProductsService(HttpClient client, IConfiguration configuration)
+    public ProductsService(IHttpClientFactory clientFactory)
     {
-        _client = client;
-        _config = configuration;
+        _client = clientFactory.CreateClient("ProductsClient");
     }
 
     public async Task<IEnumerable<ProductDTO>> GetProductsAsync()

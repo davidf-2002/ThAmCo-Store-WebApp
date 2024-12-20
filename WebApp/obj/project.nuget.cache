@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8JQwEiQnD+4=",
+  "dgSpecHash": "kMj4nNWlJ28=",
   "success": true,
-  "projectFilePath": "c:\\Users\\david\\Documents\\Cloud Computing DevOps\\ThAmCo-WebApp\\WebApp\\WebApp.csproj",
+  "projectFilePath": "C:\\Users\\david\\Documents\\Cloud Computing DevOps\\ThAmCo-WebApp\\WebApp\\WebApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\david\\.nuget\\packages\\auth0.aspnetcore.authentication\\1.4.1\\auth0.aspnetcore.authentication.1.4.1.nupkg.sha512",
     "C:\\Users\\david\\.nuget\\packages\\microsoft.aspnetcore.authentication.openidconnect\\8.0.1\\microsoft.aspnetcore.authentication.openidconnect.8.0.1.nupkg.sha512",
