@@ -9,7 +9,18 @@
 
         public Task<IEnumerable<ProductDTO>> GetProductsAsync()
         {
-            // Return the static list of products
             return Task.FromResult<IEnumerable<ProductDTO>>(_products);
+        }
+
+        public Task<bool> DeleteProductAsync(int id)
+        {
+            var product = _products.FirstOrDefault(p => p.Id == id);
+            if (product == null)
+            {
+                return Task.FromResult(false);
+            }
+
+            _products.Remove(product);
+            return Task.FromResult(true);
         }
     }

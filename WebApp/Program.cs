@@ -5,8 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAuth0WebAppAuthentication(options =>
 {
-    options.Domain = builder.Configuration["Auth0:Domain"];
-    options.ClientId = builder.Configuration["Auth0:ClientId"];
+    options.Domain = builder.Configuration["Auth:Domain"];
+    options.ClientId = builder.Configuration["Auth:ClientId"];
 });
 
 // Configure HttpClient for IProductsService with centralized settings
@@ -21,14 +21,13 @@ builder.Services.AddHttpClient("ProductsClient", client =>
 
 if (builder.Environment.IsDevelopment())
 {
-    builder.Services.AddSingleton<IProductsService, ProductsServiceFake>(); 
-    //builder.Services.AddScoped<IProductsService, ProductsService>();
+    //builder.Services.AddSingleton<IProductsService, ProductsServiceFake>(); 
+    builder.Services.AddScoped<IProductsService, ProductsService>();
 }
 else 
 {
     builder.Services.AddScoped<IProductsService, ProductsService>();
 }
-
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
