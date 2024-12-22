@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\david\\Documents\\Cloud Computing DevOps\\ThAmCo-WebApp\\WebApp\\WebApp.csproj": {}
+    "C:\\Users\\david\\Documents\\ThAmCo-WebApp\\ThAmCo-Store-WebApp\\WebApp\\WebApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\david\\Documents\\Cloud Computing DevOps\\ThAmCo-WebApp\\WebApp\\WebApp.csproj": {
+    "C:\\Users\\david\\Documents\\ThAmCo-WebApp\\ThAmCo-Store-WebApp\\WebApp\\WebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\david\\Documents\\Cloud Computing DevOps\\ThAmCo-WebApp\\WebApp\\WebApp.csproj",
+        "projectUniqueName": "C:\\Users\\david\\Documents\\ThAmCo-WebApp\\ThAmCo-Store-WebApp\\WebApp\\WebApp.csproj",
         "projectName": "WebApp",
-        "projectPath": "C:\\Users\\david\\Documents\\Cloud Computing DevOps\\ThAmCo-WebApp\\WebApp\\WebApp.csproj",
+        "projectPath": "C:\\Users\\david\\Documents\\ThAmCo-WebApp\\ThAmCo-Store-WebApp\\WebApp\\WebApp.csproj",
         "packagesPath": "C:\\Users\\david\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\david\\Documents\\Cloud Computing DevOps\\ThAmCo-WebApp\\WebApp\\obj\\",
+        "outputPath": "C:\\Users\\david\\Documents\\ThAmCo-WebApp\\ThAmCo-Store-WebApp\\WebApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\david\\AppData\\Roaming\\NuGet\\NuGet.Config",

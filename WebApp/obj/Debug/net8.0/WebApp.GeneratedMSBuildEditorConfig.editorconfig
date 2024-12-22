@@ -9,55 +9,59 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WebApp
 build_property.RootNamespace = WebApp
-build_property.ProjectDir = C:\Users\david\Documents\Cloud Computing DevOps\ThAmCo-WebApp\WebApp\
+build_property.ProjectDir = C:\Users\david\Documents\ThAmCo-WebApp\ThAmCo-Store-WebApp\WebApp\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\david\Documents\Cloud Computing DevOps\ThAmCo-WebApp\WebApp
+build_property.MSBuildProjectDirectory = C:\Users\david\Documents\ThAmCo-WebApp\ThAmCo-Store-WebApp\WebApp
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/david/Documents/Cloud Computing DevOps/ThAmCo-WebApp/WebApp/Views/Account/AccessDenied.cshtml]
+[C:/Users/david/Documents/ThAmCo-WebApp/ThAmCo-Store-WebApp/WebApp/Views/Account/AccessDenied.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/Documents/Cloud Computing DevOps/ThAmCo-WebApp/WebApp/Views/Account/Claims.cshtml]
+[C:/Users/david/Documents/ThAmCo-WebApp/ThAmCo-Store-WebApp/WebApp/Views/Account/Claims.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDbGFpbXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/Documents/Cloud Computing DevOps/ThAmCo-WebApp/WebApp/Views/Account/Profile.cshtml]
+[C:/Users/david/Documents/ThAmCo-WebApp/ThAmCo-Store-WebApp/WebApp/Views/Account/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/Documents/Cloud Computing DevOps/ThAmCo-WebApp/WebApp/Views/Home/Index.cshtml]
+[C:/Users/david/Documents/ThAmCo-WebApp/ThAmCo-Store-WebApp/WebApp/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/Documents/Cloud Computing DevOps/ThAmCo-WebApp/WebApp/Views/Home/Privacy.cshtml]
+[C:/Users/david/Documents/ThAmCo-WebApp/ThAmCo-Store-WebApp/WebApp/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/Documents/Cloud Computing DevOps/ThAmCo-WebApp/WebApp/Views/Products/Index.cshtml]
+[C:/Users/david/Documents/ThAmCo-WebApp/ThAmCo-Store-WebApp/WebApp/Views/Products/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/david/Documents/ThAmCo-WebApp/ThAmCo-Store-WebApp/WebApp/Views/Products/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/Documents/Cloud Computing DevOps/ThAmCo-WebApp/WebApp/Views/Shared/Error.cshtml]
+[C:/Users/david/Documents/ThAmCo-WebApp/ThAmCo-Store-WebApp/WebApp/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/Documents/Cloud Computing DevOps/ThAmCo-WebApp/WebApp/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/david/Documents/ThAmCo-WebApp/ThAmCo-Store-WebApp/WebApp/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/Documents/Cloud Computing DevOps/ThAmCo-WebApp/WebApp/Views/_ViewImports.cshtml]
+[C:/Users/david/Documents/ThAmCo-WebApp/ThAmCo-Store-WebApp/WebApp/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/Documents/Cloud Computing DevOps/ThAmCo-WebApp/WebApp/Views/_ViewStart.cshtml]
+[C:/Users/david/Documents/ThAmCo-WebApp/ThAmCo-Store-WebApp/WebApp/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/david/Documents/Cloud Computing DevOps/ThAmCo-WebApp/WebApp/Views/Shared/_Layout.cshtml]
+[C:/Users/david/Documents/ThAmCo-WebApp/ThAmCo-Store-WebApp/WebApp/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-7882z672yd
