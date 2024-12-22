@@ -11,6 +11,7 @@ public class ProductsController : Controller
         _service = productsService;
     }
 
+    // GET: Products/
     [HttpGet]
     public async Task<IActionResult> Index()
     {
@@ -26,18 +27,34 @@ public class ProductsController : Controller
         return View(productViewModels);
     }
 
-    [HttpDelete]
-    [Route("products/{id}")]
+    // GET: Products/Delete/5
+    [HttpGet]
     public async Task<IActionResult> Delete(int id)
     {
-        bool isDeleted = await _service.DeleteProductAsync(id);
-        if (isDeleted)
+        var productDTO = await _service.GetProductByIdAsync(id); 
+        if (productDTO == null)
         {
-            return RedirectToAction("Index"); 
+            return NotFound();
         }
-        else
+
+        var productViewModel = new ProductViewModel
         {
-            return View("Error", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+            Id = productDTO.Id,
+            Name = productDTO.Name,
+            Description = productDTO.Description,
+            Price = productDTO.Price
+        };
+
+        return View(productViewModel);
     }
+
+    // POST: Products/Delete/5
+    [HttpPost, ActionName("DeleteConfirmed")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteConfirmed(int id)
+    {
+        await _service.DeleteProductAsync(id);
+        return RedirectToAction(nameof(Index));
+    }
+
 }

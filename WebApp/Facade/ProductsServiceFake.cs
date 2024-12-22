@@ -12,6 +12,12 @@
             return Task.FromResult<IEnumerable<ProductDTO>>(_products);
         }
 
+        public Task<ProductDTO> GetProductByIdAsync(int id)
+        {
+            var product = _products.FirstOrDefault(p => p.Id == id);
+            return Task.FromResult(product);
+        }
+
         public Task<bool> DeleteProductAsync(int id)
         {
             var product = _products.FirstOrDefault(p => p.Id == id);
