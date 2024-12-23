@@ -18,6 +18,12 @@
             return Task.FromResult(product);
         }
 
+        public async Task<ProductDTO> AddProductAsync(ProductDTO product)
+        {
+            _products.Add(product);
+            return await Task.FromResult(product);
+        }
+
         public Task<bool> DeleteProductAsync(int id)
         {
             var product = _products.FirstOrDefault(p => p.Id == id);

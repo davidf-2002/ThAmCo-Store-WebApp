@@ -3,11 +3,22 @@ using WebApp;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddAuth0WebAppAuthentication(options =>
 {
     options.Domain = builder.Configuration["Auth0:Domain"];
     options.ClientId = builder.Configuration["Auth0:ClientId"];
+    options.ClientSecret = builder.Configuration["Auth:ClientSecret"];
+    options.ResponseType = "code";  // Use authorization code flow
+    options.Scope = "write:products";  // Request these scopes at login
+}).WithAccessToken(options =>
+{
+    options.Audience = builder.Configuration["Auth0:Audience"];
 });
+
 
 // Configure HttpClient for IProductsService with centralized settings
 builder.Services.AddHttpClient("ProductsClient", client =>
@@ -28,7 +39,6 @@ else
     builder.Services.AddScoped<IProductsService, ProductsService>();
 }
 
-builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
