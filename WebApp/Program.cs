@@ -1,5 +1,8 @@
 using Auth0.AspNetCore.Authentication;
 using WebApp;
+using Polly;
+using Polly.Extensions.Http;
+using System.Net.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +10,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpContextAccessor();
 
+
+// Configure Authentication
 builder.Services.AddAuth0WebAppAuthentication(options =>
 {
     options.Domain = builder.Configuration["Auth0:Domain"];
@@ -20,15 +25,19 @@ builder.Services.AddAuth0WebAppAuthentication(options =>
 });
 
 
-// Configure HttpClient for IProductsService with centralized settings
+// Configure centralised HttpClient for ProductsAPI
 builder.Services.AddHttpClient("ProductsClient", client =>
 {
     var baseUrl = builder.Configuration["ProductsApi:BaseUrl"];
     client.BaseAddress = new Uri(baseUrl);
     client.Timeout = TimeSpan.FromSeconds(20);
     client.DefaultRequestHeaders.Add("Accept", "application/json");
-});
+})
+.AddPolicyHandler(GetRetryPolicy())
+.AddPolicyHandler(GetCircuitBreakerPolicy());
 
+
+// Inject services in different environments
 if (builder.Environment.IsDevelopment())
 {
     //builder.Services.AddSingleton<IProductsService, ProductsServiceFake>(); 
@@ -63,3 +72,38 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+
+IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
+{
+    return HttpPolicyExtensions
+        .HandleTransientHttpError()
+        .OrResult(msg => msg.StatusCode == System.Net.HttpStatusCode.NotFound)
+        .WaitAndRetryAsync(
+            retryCount: 3,
+            sleepDurationProvider: retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
+            onRetry: (outcome, timespan, retryAttempt, context) =>
+            {
+                Console.WriteLine($"Retry {retryAttempt} after {timespan.Seconds} seconds due to: {outcome.Exception?.Message ?? outcome.Result.StatusCode.ToString()}");
+            }
+        );
+}
+
+IAsyncPolicy<HttpResponseMessage> GetCircuitBreakerPolicy()
+{
+    return HttpPolicyExtensions
+        .HandleTransientHttpError()
+        .CircuitBreakerAsync(5, TimeSpan.FromSeconds(30),
+                    onBreak: (outcome, timespan) =>
+            {
+                Console.WriteLine($"Circuit broken due to: {outcome.Exception?.Message ?? outcome.Result.StatusCode.ToString()}. Break duration: {timespan.TotalSeconds} seconds.");
+            },
+            onReset: () =>
+            {
+                Console.WriteLine("Circuit reset.");
+            },
+            onHalfOpen: () =>
+            {
+                Console.WriteLine("Circuit is half-open. Next call is a trial.");
+            });
+}

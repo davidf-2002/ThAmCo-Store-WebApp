@@ -1,11 +1,11 @@
  public class ProductsServiceFake : IProductsService
     {
-        private static readonly List<ProductDTO> _products = new List<ProductDTO>
-        {
-            new ProductDTO { Id = 1, Name = "Laptop", Description = "High-performance laptop", Price = 1200.00m },
-            new ProductDTO { Id = 2, Name = "Smartphone", Description = "Latest model smartphone", Price = 800.00m },
-            new ProductDTO { Id = 3, Name = "Tablet", Description = "Portable and powerful tablet", Price = 600.00m }
-        };
+    private readonly List<ProductDTO> _products = new List<ProductDTO>
+    {
+        new ProductDTO { Id = 1, Name = "T-shirt", Description = "Jack & Jones", Price = 11.50m, StockStatus = "In Stock", LastUpdated = new DateTime(2024, 11, 07)},
+        new ProductDTO { Id = 2, Name = "Jeans", Description = "Armani", Price = 30.00m, StockStatus = "In Stock", LastUpdated = new DateTime(2024, 11, 07)},
+        new ProductDTO { Id = 3, Name = "Hoody", Description = "Boss", Price = 20.99m, StockStatus = "Out of Stock", LastUpdated = new DateTime(2024, 11, 07)}    
+    };
 
         public Task<IEnumerable<ProductDTO>> GetProductsAsync()
         {
