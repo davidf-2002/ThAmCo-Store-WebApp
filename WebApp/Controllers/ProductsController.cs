@@ -78,7 +78,8 @@ public class ProductsController : Controller
                 Name = productViewModel.Name,
                 Description = productViewModel.Description,
                 Price = productViewModel.Price,
-                StockStatus = productViewModel.StockStatus,
+                StockLevel = productViewModel.StockLevel,
+                CategoryId = productViewModel.CategoryId
             };
 
             await _service.AddProductAsync(productDTO);

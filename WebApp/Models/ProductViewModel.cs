@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 namespace WebApp.Models;
 public class ProductViewModel
 {
@@ -6,5 +8,7 @@ public class ProductViewModel
     public string? Description { get; set; }
     public decimal Price { get; set; }
     public string? StockStatus { get; set;}
+    public int StockLevel { get; set; }
     public DateTime LastUpdated { get; set; }
+    public int CategoryId { get; set; }
 }

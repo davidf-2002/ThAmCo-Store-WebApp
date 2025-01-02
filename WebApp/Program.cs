@@ -30,7 +30,7 @@ builder.Services.AddHttpClient("ProductsClient", client =>
 {
     var baseUrl = builder.Configuration["ProductsApi:BaseUrl"];
     client.BaseAddress = new Uri(baseUrl);
-    client.Timeout = TimeSpan.FromSeconds(20);
+    client.Timeout = TimeSpan.FromSeconds(40);
     client.DefaultRequestHeaders.Add("Accept", "application/json");
 })
 .AddPolicyHandler(GetRetryPolicy())
