@@ -12,19 +12,19 @@
 </p>
 
 @* Search box for Product details *@
-<form asp-controller="Products" asp-action="Details" method="get">
-    <label for="id">Product ID:</label>
-    <input type="text" id="id" name="id" required />
+<form asp-controller="Products" asp-action="Search" method="get">
+    <label for="name">Search: </label>
+    <input type="text" id="query" name="query" required />
     <button type="submit">Search</button>
 </form>
 
 <table class="table">
     <thead>
         <tr>
-            <th>Id</th>
             <th>Name</th>
             <th>Price</th>
             <th>Description</th>
+            <th>Stock status</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -32,10 +32,10 @@
     @foreach (var product in Model)
     {
         <tr>
-            <td>@product.Id</td>
             <td>@product.Name</td>
             <td>@product.Price</td>
             <td>@product.Description</td>
+            <td>@product.StockStatus</td>
             <td>
                 <a asp-action="Delete" asp-route-id="@product.Id" class="btn btn-danger">Delete</a>
             </td>

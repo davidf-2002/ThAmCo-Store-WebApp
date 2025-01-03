@@ -21,7 +21,8 @@ public class ProductsController : Controller
             Id = dto.Id,
             Name = dto.Name,
             Description = dto.Description,
-            Price = dto.Price
+            Price = dto.Price,
+            StockStatus = dto.StockStatus
         });
 
         return View(productViewModels);
@@ -31,7 +32,7 @@ public class ProductsController : Controller
     [HttpGet]
     public async Task<IActionResult> Details(int id)
     {
-        if (id == null)
+        if (id == 0)
         {
             return NotFound();
         }
@@ -49,15 +50,48 @@ public class ProductsController : Controller
                 Id = product.Id,
                 Name = product.Name,
                 Description = product.Description,
-                Price = product.Price
+                Price = product.Price,
+                StockStatus = product.StockStatus,
+                StockLevel = product.StockLevel
             };
             return View(viewModel);
         }
         catch (HttpRequestException)
         {
-            return BadRequest("Product doesn't exist");
+            return View("Product Not Found");
         }
     }
+
+    // GET: Products/Search
+    [HttpGet]
+    public async Task<IActionResult> Search(string query)
+    {
+        if (string.IsNullOrEmpty(query))
+        {
+            return BadRequest("Search query is required");
+        }
+
+        var products = await _service.GetProductsAsync();
+        var matchingProducts = products.Where(p => p.Name.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                                                p.Description.Contains(query, StringComparison.OrdinalIgnoreCase));
+
+        if (!matchingProducts.Any())
+        {
+            return View("ProductNotFound");
+        }
+
+        var productViewModels = matchingProducts.Select(p => new ProductViewModel
+        {
+            Id = p.Id,
+            Name = p.Name,
+            Description = p.Description,
+            Price = p.Price,
+            StockStatus = p.StockStatus
+        });
+
+        return View("Index", productViewModels);
+    }
+
 
     // GET: Products/Create
     [HttpGet]
