@@ -1,0 +1,95 @@
+name: Deploy to Azure
+
+on:
+    push:
+    workflow_dispatch:
+
+env:
+  PROJECT_PATH: ./WebApp
+  PUBLISH_PATH: ./myapp
+
+jobs:
+    build_and_test:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v4
+    
+          - name: Set up .NET Core
+            uses: actions/setup-dotnet@v4
+            with:
+              dotnet-version: '8.x'
+    
+          - name: Build with dotnet
+            run: dotnet build ${{ env.PROJECT_PATH }}/WebApp.csproj --configuration Release
+    
+          - name: Run unit tests
+            run: dotnet test ${{ env.PROJECT_PATH }}/WebApp.csproj --configuration Release --no-build --logger "trx;LogFileName=test_results.xml"
+
+          - name: Publish App
+            run: dotnet publish ${{ env.PROJECT_PATH }}/WebApp.csproj -c Release -o ${{ env.PUBLISH_PATH }}
+            
+          - name: Upload artifact
+            uses: actions/upload-artifact@v4
+            with:
+              name: .net-app
+              path: ${{ env.PUBLISH_PATH }}
+
+    deploy_to_staging:
+        if: ${{ github.ref == 'refs/heads/dev' }}
+        environment: 
+            name: Staging
+            url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+        runs-on: ubuntu-latest
+        needs: build_and_test
+        permissions:
+            contents: read
+            id-token: write #This is required for requesting the JWT
+        
+        steps:            
+            - name: Download artifact
+              uses: actions/download-artifact@v4
+              with:
+                  name: .net-app
+                  path: ${{ env.PUBLISH_PATH }}
+        
+            - name: Deploy to Staging Slot
+              uses: azure/webapps-deploy@v3
+              with:
+                  app-name: 'thamco-webapplication'
+                  slot-name: 'Staging'
+                  publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+                  package: ${{ env.PUBLISH_PATH }}
+
+                  
+    deploy_to_production:
+        if: ${{ github.ref == 'refs/heads/main' }}
+        environment: 
+            name: Production
+            url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+        runs-on: ubuntu-latest
+        needs: build_and_test
+        permissions:
+            contents: read
+            id-token: write #This is required for requesting the JWT
+
+        steps:
+            - name: Download artifact
+              uses: actions/download-artifact@v4
+              with:
+                  name: .net-app
+                  path: ${{ env.PUBLISH_PATH }}
+    
+            - name: Login to Azure
+              uses: azure/login@v2
+              with:
+                client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_E570BA6B933D40BCB37AAA916AE0C273 }}
+                tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_D1F2836ED21A40B1BF0D8642A5EC65B3 }}
+                subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4B57AA5AAFA74E2782B29C5CD8614B17 }}
+          
+            - name: Deploy to Azure Web App
+              id: deploy-to-webapp
+              uses: azure/webapps-deploy@v3
+              with:
+                app-name: 'ThAmCo-WebApplication'
+                slot-name: 'Production'
+                package: .

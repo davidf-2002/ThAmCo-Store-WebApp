@@ -1,0 +1,23 @@
+@model WebApp.Models.ProductViewModel
+
+@{
+    ViewData["Title"] = "Delete Product";
+}
+
+<h1>Delete Product</h1>
+
+<h3>Are you sure you want to delete this product?</h3>
+<div>
+    <h4>@Model.Name</h4>
+    <div>
+        Price: @Model.Price
+    </div>
+    <div>
+        Description: @Model.Description
+    </div>
+
+    <form asp-action="DeleteConfirmed" asp-route-id="@Model.Id" method="post">
+        <input type="submit" value="Delete" class="btn btn-danger" /> 
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
