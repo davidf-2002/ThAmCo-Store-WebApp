@@ -79,9 +79,17 @@ jobs:
                   name: .net-app
                   path: ${{ env.PUBLISH_PATH }}
     
-            - name: Deploy to Production
+            - name: Login to Azure
+              uses: azure/login@v2
+              with:
+                client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_E570BA6B933D40BCB37AAA916AE0C273 }}
+                tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_D1F2836ED21A40B1BF0D8642A5EC65B3 }}
+                subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4B57AA5AAFA74E2782B29C5CD8614B17 }}
+          
+            - name: Deploy to Azure Web App
+              id: deploy-to-webapp
               uses: azure/webapps-deploy@v3
               with:
-                  app-name: 'ThAmCo-WebApplication'
-                  publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-                  package: ${{ env.PUBLISH_PATH }}
+                app-name: 'ThAmCo-WebApplication'
+                slot-name: 'Production'
+                package: .
