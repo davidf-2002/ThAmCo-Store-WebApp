@@ -39,7 +39,8 @@ public class ProductsService : IProductsService
         try
         {
             var accessToken = await _httpContextAccessor.HttpContext.GetTokenAsync("access_token");
-            var _client = _clientFactory.CreateClient("ProductsClient");
+
+            var _client = _clientFactory.CreateClient("ProductsClient");    // Create client to send access token to the API
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
             Console.WriteLine("Authorization header set with token: " + _client.DefaultRequestHeaders.Authorization?.Parameter);
             var content = JsonSerializer.Serialize(product);
@@ -59,6 +60,7 @@ public class ProductsService : IProductsService
     public async Task<bool> DeleteProductAsync(int id) 
     {
         var accessToken = await _httpContextAccessor.HttpContext.GetTokenAsync("access_token");
+
         var _client = _clientFactory.CreateClient("ProductsClient");
         _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
         Console.WriteLine("Authorization header set with token: " + _client.DefaultRequestHeaders.Authorization?.Parameter);
