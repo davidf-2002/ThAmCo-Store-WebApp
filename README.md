@@ -3,6 +3,9 @@
 Welcome to ThAmCo Web App! This web application provides a user-friendly interface for accessing and managing product details. It serves as a front-end to the ProductsAPI, enabling both public and 
 staff-specific functionalities securely.
 
+## Live Project
+https://thamco-webapplication-aegxdgbkdycgaqcq.uksouth-01.azurewebsites.net/
+
 ## Features
 
 - **User Authentication**: Secure login system for both public users and staff.

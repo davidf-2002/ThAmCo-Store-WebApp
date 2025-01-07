@@ -40,8 +40,7 @@ builder.Services.AddHttpClient("ProductsClient", client =>
 // Inject services in different environments
 if (builder.Environment.IsDevelopment())
 {
-    //builder.Services.AddSingleton<IProductsService, ProductsServiceFake>(); 
-    builder.Services.AddScoped<IProductsService, ProductsService>();
+    builder.Services.AddSingleton<IProductsService, ProductsServiceFake>(); 
 }
 else 
 {
