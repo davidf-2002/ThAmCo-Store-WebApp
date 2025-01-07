@@ -2,6 +2,7 @@ using Auth0.AspNetCore.Authentication;
 using WebApp;
 using Polly;
 using Polly.Extensions.Http;
+using Microsoft.AspNetCore.Antiforgery;
 using System.Net.Http;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -37,6 +38,13 @@ builder.Services.AddHttpClient("ProductsClient", client =>
 .AddPolicyHandler(GetCircuitBreakerPolicy());
 
 
+// Configure anti-forgery to prevent XSRF attacks
+builder.Services.AddAntiforgery(options =>
+{
+    options.HeaderName = "X-XSRF-TOKEN";
+});
+
+
 // Inject services in different environments
 if (builder.Environment.IsDevelopment())
 {
@@ -54,7 +62,6 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -65,6 +72,14 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.Use(async (context, next) =>
+{
+    var antiforgery = context.RequestServices.GetRequiredService<IAntiforgery>();
+    var tokens = antiforgery.GetAndStoreTokens(context);
+    context.Response.Cookies.Append("XSRF-TOKEN", tokens.RequestToken, new CookieOptions { HttpOnly = false });
+    await next();
+});
 
 app.MapControllerRoute(
     name: "default",
