@@ -1,10 +1,27 @@
 # ThAmCo Web Application
 
-Welcome to ThAmCo Web App! This web application provides a user-friendly interface for accessing and managing product details. It serves as a front-end to the ProductsAPI, enabling both public and 
-staff-specific functionalities securely.
+This is a cloud-hosted, role-secured web application designed to allow both customers and staff to interact with product data in a streamlined and secure environment. Built using ASP.NET Core MVC, the application serves as the front-end to the underlying **ProductsAPI**, which manages the core product-related operations.
 
-## Live Project
-https://thamco-webapplication-aegxdgbkdycgaqcq.uksouth-01.azurewebsites.net/
+The front-end communicates asynchronously with the ProductsAPI via RESTful HTTP calls. Staff members with appropriate roles can perform full product management (create, update, delete), while general users can browse and search the product catalogue. All user interactions are protected with robust **OIDC and OAuth2-based authentication and authorisation**.
+
+To promote scalability and clean architecture, the system implements the **Remote Façade** and **Repository** design patterns:
+- The *Remote Façade* pattern exposes a simplified interface to the ProductsAPI, hiding the complexity of underlying HTTP logic.
+- The *Repository* pattern decouples the domain logic from data access and API integration, making the application easier to test and maintain.
+
+In addition, **network resilience** is achieved through:
+- **Retry Policies**: Automatically retry transient failures such as brief API outages or timeouts.
+- **Circuit Breaker**: Prevents cascading failures by temporarily halting requests when repeated failures are detected, allowing external services to recover.
+
+These mechanisms are implemented using middleware and policy-based HTTP clients, ensuring fault tolerance and a seamless user experience.
+
+
+## Images
+
+### Manage Products
+<img src="https://github.com/user-attachments/assets/487495f8-6ce6-47f5-9e99-4413fe0474da" alt="Manage products" width="50%"/>
+
+### Role-Based Access Control
+<img src="https://github.com/user-attachments/assets/fd2feda9-8c1e-46ee-ba8f-63ea8b5bb584" alt="Role-based access control" width="50%"/>
 
 ## Features
 
@@ -14,17 +31,20 @@ https://thamco-webapplication-aegxdgbkdycgaqcq.uksouth-01.azurewebsites.net/
 - **Responsive Design**: Compatible with various devices and screen sizes.
 - **Security**: Integrated security features to safeguard data and user interactions.
 
-## Requirements
+## Live Project
 
-- ASP.NET MVC
-- .NET Core 8.0 or later
-- ProductsAPI (back-end setup)
-- SQL Server (for user and product data)
-- Modern web browser
+Access the deployed version here:  
+[**ThAmCo Web App**](https://thamco-webapplication-aegxdgbkdycgaqcq.uksouth-01.azurewebsites.net/)
+
+## Requirements
+- .NET Core 8.0 or later  
+- ProductsAPI (back-end setup)  
+- SQL Server (for user and product data)  
+- Modern web browser  
 
 ## Getting Started
 
-Here are the steps to set up the web application locally:
+To set up the web application locally:
 
 1. **Clone the repository**:
    ```bash
